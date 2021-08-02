@@ -29,12 +29,15 @@
             <a class="nav-link" href="?language=ukr">Ukrainian</a>
         </li>
     </ul>
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="/auth/login">
         <h1 class="h3 mb-3 font-weight-normal" th:utext="#{label.login.sign}">Please sign in</h1>
+
         <label for="inputEmail" class="sr-only" th:utext="#{label.userName}">Login</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Login" required="" autofocus="">
+        <input type="text" id="inputEmail" class="form-control" placeholder="Login" autofocus="" name="username" required>
+
         <label for="inputPassword" class="sr-only" th:utext="#{label.password}">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{label.submit}">Sign in</button>
     </form>
 </body>

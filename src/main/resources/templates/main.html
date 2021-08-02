@@ -6,5 +6,8 @@
 </head>
 <body>
     <strong th:utext="#{label.mainPage.title}"></strong>
+    <form action="/auth/logout" method="post">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{label.submit}">Log out</button>
+    </form>
 </body>
 </html>

@@ -2,6 +2,7 @@ package ua.ivan.provider.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -9,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProviderController {
 
 
-    @GetMapping("/")
-    public String indexPage(@RequestParam(defaultValue = "en") String language) {
-        return "index";
-    }
-
-    @GetMapping("/registration")
-    public String regPage(@RequestParam(defaultValue = "en") String language) {
-        return "registration";
-    }
-
-    @GetMapping("/main")
-    public String mainPage(@RequestParam(defaultValue = "en") String language) {
-        return "main";
-    }
-
-    @RequestMapping(value = "/login")
-    public String loginPage() {
-        return "login";
-    }
+//    @GetMapping("/")
+//    public String indexPage() {
+//        return "index";
+//    }
+//
+//    @GetMapping("/registration")
+//    public String regPage() {
+//        return "registration";
+//    }
+//
+//    @GetMapping("/admin/main")
+//    public String mainPage() {
+//        return "main";
+//    }
+//
+//    @RequestMapping(value = "/login")
+//    public String loginPage() {
+//        return "login";
+//    }
 
 }
