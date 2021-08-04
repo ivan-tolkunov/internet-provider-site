@@ -1,11 +1,11 @@
 package ua.ivan.provider.security;
 
 import lombok.Data;
+import ua.ivan.provider.model.Status;
+import ua.ivan.provider.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ua.ivan.provider.model.Status;
-import ua.ivan.provider.model.User;
 
 import java.util.Collection;
 import java.util.List;
@@ -71,3 +71,4 @@ public class SecurityUser implements UserDetails {
         );
     }
 }
+

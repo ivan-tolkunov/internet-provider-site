@@ -8,11 +8,13 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div>
-        <form method="get" action="/registration">
-            <button type="submit" class="btn btn-primary" name="language" value="eng">English</button>
-            <button type="submit" class="btn btn-primary" name="language" value="ukr">Ukrainian</button>
-        </form>
-    </div>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link" href="/auth/main?language=en">English</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/auth/main?language=ukr">Ukrainian</a>
+        </li>
+    </ul>
 </body>
 </html>

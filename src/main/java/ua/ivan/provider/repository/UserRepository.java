@@ -1,7 +1,7 @@
 package ua.ivan.provider.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import ua.ivan.provider.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
