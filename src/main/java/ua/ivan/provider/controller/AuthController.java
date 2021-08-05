@@ -3,7 +3,6 @@ package ua.ivan.provider.controller;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +29,6 @@ public class AuthController {
     public String getMainPage(Model model, Authentication authentication) {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
-
-//        System.out.println(user.getBalance());
         return "main";
     }
 }

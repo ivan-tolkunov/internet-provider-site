@@ -18,13 +18,11 @@
 
 <div class=" nav-my d-flex justify-content-between ">
     <div>
-        <a th:href="@{/auth/main}" th:utext="#{label.main.page}">Main page</a>
-        <a th:href="@{/admin}" sec:authorize="hasAuthority('write')" th:utext="#{label.admin.panel}">Admin Panel</a>
+        <a href="#" th:href="@{/auth/main}" th:utext="#{label.main.page}">Main page</a>
     </div>
-    <form action="#" th:action="@{/auth/logout}" method="post" th:object="${user}">
+    <form action="#" th:action="@{/auth/logout}" method="post">
         <a href="/changeLanguage?language=en" th:utext="#{label.language.en}">English</a>
         <a href="/changeLanguage?language=ukr" th:utext="#{label.language.ukr}">Ukrainian</a>
-        <a href="#" th:utext="*{getEmail()}">Email</a>
         <button class="btn btn-outline-secondary" type="submit" th:utext="#{label.logout}">Logout</button>
         <br>
         <form action="#" th:action="@{/auth/logout}" method="post" th:object="${user}">
@@ -34,5 +32,30 @@
     </form>
 </div>
 <hr>
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:text="#{label.admin.email}"/>
+            <th th:text="#{label.admin.balance}"/>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listOfUsers}">
+            <td th:text="${user.email}"/>
+            <td th:text="${user.balance}"/>
+            <td th:text="${user.status}"/>
+            <td th:switch="${user.status}">
+                <form action="#" th:action="@{/admin/banUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).ACTIVE}">
+                    <button type="submit" class="btn btn-outline-danger" th:value="${user.id}" name="id">Ban</button>
+                </form>
+                <form action="#" th:action="@{/admin/unbanUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).BANNED}">
+                    <button type="submit" class="btn btn-outline-success" th:value="${user.id}" name="id">Unban</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
