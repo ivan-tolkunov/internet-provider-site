@@ -28,6 +28,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return SecurityUser.fromUser(user);
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() ->
+                new UsernameNotFoundException("User doesn't exists"));
+    }
+
     public User findById(Long id) {
         return userRepository.getById(id);
     }

@@ -10,10 +10,13 @@
 <body>
     <ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" href="/auth/main?language=en">English</a>
+            <a class="nav-link" href="/changeLanguage?language=en" th:utext="#{label.language.en}">English</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/auth/main?language=ukr">Ukrainian</a>
+            <a class="nav-link" href="/changeLanguage?language=ukr" th:utext="#{label.language.ukr}">Ukrainian</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/registration" th:utext="#{label.registration}">Registration</a>
         </li>
     </ul>
 </body>

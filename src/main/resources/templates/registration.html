@@ -6,32 +6,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <style>
+        a {
+            text-decoration: none;
+        }
+        form {
+            max-width: 600px;
+            margin: 200px auto;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 <ul class="nav justify-content-end">
     <li class="nav-item">
-        <a class="nav-link" href="?language=en">English</a>
+        <a class="nav-link" href="/changeLanguage?language=en" th:utext="#{label.language.en}">English</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="?language=ukr">Ukrainian</a>
+        <a class="nav-link" href="/changeLanguage?language=ukr" th:utext="#{label.language.ukr}">Ukrainian</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/auth/login" th:utext="#{label.login}">Login</a>
     </li>
 </ul>
     <form class="form-signin" method="post" action="/registration/addNewUser" >
-        <h1 class="h3 mb-3 font-weight-normal">Please fill all information</h1>
+        <h1 class="h3 mb-3 font-weight-normal"  th:utext="#{label.registration.info}">Please fill all information</h1>
 
-        <label for="inputPassword" class="sr-only">First name</label>
-        <input type="text" id="inputName" class="form-control" placeholder="First Name" name="firstName" required>
+        <label for="inputPassword" class="sr-only" th:utext="#{label.first.name}">First name</label>
+        <input type="text" id="inputName" class="form-control" th:placeholder="#{label.first.name}" name="firstName" required>
 
-        <label for="inputPassword" class="sr-only">Last name</label>
-        <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" name="lastName" required>
+        <label for="inputPassword" class="sr-only" th:utext="#{label.last.name}">Last name</label>
+        <input type="text" id="inputLastName" class="form-control" th:placeholder="#{label.last.name}" name="lastName" required>
 
-        <label for="inputEmail" class="sr-only" th:utext="#{label.userName}" >Login</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Login" autofocus="" name="email" required>
+        <label for="inputEmail" class="sr-only" th:utext="#{label.email}" >Email</label>
+        <input type="email" id="inputEmail" class="form-control" th:placeholder="#{label.email}" autofocus="" name="email" required>
 
         <label for="inputPassword" class="sr-only" th:utext="#{label.password}">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+        <input type="password" id="inputPassword" class="form-control" th:placeholder="#{label.password}" name="password" required>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{label.submit}">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{label.registration.btn}">Sign in</button>
     </form>
 </body>
 </html>
