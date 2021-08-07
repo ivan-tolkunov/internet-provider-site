@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ua.ivan.provider.model.Permission;
-import ua.ivan.provider.model.Role;
 
 @Configuration
 @EnableWebSecurity
@@ -35,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/registration/**", "/changeLanguage").permitAll()
-                .antMatchers("/admin/**").hasAnyAuthority(Permission.WRITE.getPermission(), Permission.READ.getPermission())
+                .antMatchers("/admin/**").hasAnyAuthority(Permission.WRITE.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -45,12 +45,41 @@
             <td th:text="${user.email}"/>
             <td th:text="${user.balance}"/>
             <td th:text="${user.status}"/>
+<!--            <td th:each="package : ${user.packageIds}" th:text="${package.name}"/>-->
             <td th:switch="${user.status}">
                 <form action="#" th:action="@{/admin/banUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).ACTIVE}">
                     <button type="submit" class="btn btn-outline-danger" th:value="${user.id}" name="id">Ban</button>
                 </form>
                 <form action="#" th:action="@{/admin/unbanUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).BANNED}">
                     <button type="submit" class="btn btn-outline-success" th:value="${user.id}" name="id">Unban</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:text="#{label.admin.email}"/>
+            <th th:text="#{label.admin.balance}"/>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="donate : ${listOfDonates}">
+            <td th:text="${donate.userId.email}"/>
+            <td th:text="${donate.sum}"/>
+            <td>
+                <form action="#" th:action="@{/admin/confirm}" method="post">
+                    <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
+                    <input type="hidden" th:value="${donate.id}" name="id_donate"/>
+                    <button type="submit" class="btn btn-success" th:value="${donate.sum}" name="sum">Сonfirm</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/admin/unconfirm}" method="post">
+                    <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
+                    <button type="submit" class="btn btn-outline-danger" th:value="${donate.id}" name="id_donate">Unconfirm</button>
                 </form>
             </td>
         </tr>

@@ -1,6 +1,7 @@
 package ua.ivan.provider.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.ivan.provider.model.User;
 import ua.ivan.provider.service.UserDetailsServiceImpl;
 
+
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
     public AuthController(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }

@@ -21,20 +21,18 @@
         <a th:href="@{/auth/main}" th:utext="#{label.main.page}">Main page</a>
         <a th:href="@{/admin}" sec:authorize="hasAuthority('write')" th:utext="#{label.admin.panel}">Admin Panel</a>
     </div>
-    <div>
-        <form action="#" th:action="@{/auth/logout}" method="post" th:object="${user}">
-            <a href="/changeLanguage?language=en" th:utext="#{label.language.en}">English</a>
-            <a href="/changeLanguage?language=ukr" th:utext="#{label.language.ukr}">Ukrainian</a>
-            <a href="#" th:utext="*{getEmail()}">Email</a>
-            <button class="btn btn-outline-secondary" type="submit" th:utext="#{label.logout}">Logout</button>
-            <br>
-        </form>
+    <form action="#" th:action="@{/auth/logout}" method="post" th:object="${user}">
+        <a href="/changeLanguage?language=en" th:utext="#{label.language.en}">English</a>
+        <a href="/changeLanguage?language=ukr" th:utext="#{label.language.ukr}">Ukrainian</a>
+        <a href="#" th:utext="*{getEmail()}">Email</a>
+        <button class="btn btn-outline-secondary" type="submit" th:utext="#{label.logout}">Logout</button>
+        <br>
         <form action="#" th:action="@{/user/donate}" method="post" th:object="${user}">
             <i th:utext="#{label.main.balance}">Balance:</i>
             <i th:utext="*{getBalance()}">1337</i>
             <button type="submit" class="btn btn-primary">+</button>
         </form>
-    </div>
+    </form>
 </div>
 <hr>
 </body>

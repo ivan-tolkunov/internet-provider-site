@@ -3,6 +3,7 @@ package ua.ivan.provider.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -28,5 +29,8 @@ public class User {
     private Status status;
     @Column(name = "balance")
     private int balance;
+    @OneToMany(mappedBy="users")
+    @JoinColumn(name = "id_packages")
+    private Set<Packages> packageIds;
 
 }
