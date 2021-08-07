@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.ivan.provider.model.Status;
 import ua.ivan.provider.model.User;
 import ua.ivan.provider.service.DonateService;
+import ua.ivan.provider.service.PackageService;
 import ua.ivan.provider.service.UserDetailsServiceImpl;
 
 @Controller
@@ -17,11 +18,15 @@ public class AdminController {
 
     private UserDetailsServiceImpl userDetailsService;
     private DonateService donateService;
+    private PackageService packageService;
 
     @Autowired
-    public AdminController(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService, @Qualifier("donateService")DonateService donateService) {
+    public AdminController(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService,
+                           @Qualifier("donateService")DonateService donateService,
+                           @Qualifier("packageService") PackageService packageService) {
         this.userDetailsService = userDetailsService;
         this.donateService = donateService;
+        this.packageService = packageService;
     }
 
     @GetMapping
@@ -30,6 +35,7 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("listOfUsers", userDetailsService.findAll());
         model.addAttribute("listOfDonates", donateService.findAll());
+        model.addAttribute("listOfPackages", packageService.findAll());
         return "admin";
     }
 

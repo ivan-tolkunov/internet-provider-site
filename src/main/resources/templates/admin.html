@@ -45,7 +45,6 @@
             <td th:text="${user.email}"/>
             <td th:text="${user.balance}"/>
             <td th:text="${user.status}"/>
-<!--            <td th:each="package : ${user.packageIds}" th:text="${package.name}"/>-->
             <td th:switch="${user.status}">
                 <form action="#" th:action="@{/admin/banUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).ACTIVE}">
                     <button type="submit" class="btn btn-outline-danger" th:value="${user.id}" name="id">Ban</button>
@@ -82,6 +81,22 @@
                     <button type="submit" class="btn btn-outline-danger" th:value="${donate.id}" name="id_donate">Unconfirm</button>
                 </form>
             </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:text="#{label.admin.email}"/>
+            <th th:text="#{label.admin.balance}"/>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="package : ${listOfPackages}">
+            <td th:text="${package.name}"/>
+            <td th:text="${package.description}"/>
+
         </tr>
         </tbody>
     </table>
