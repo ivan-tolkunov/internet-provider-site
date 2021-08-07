@@ -29,8 +29,7 @@ public class User {
     private Status status;
     @Column(name = "balance")
     private int balance;
-    @OneToMany(mappedBy="users")
-    @JoinColumn(name = "id_packages")
-    private Set<Packages> packageIds;
+    @OneToMany(mappedBy="user")
+    private Set<Packages> packages;
 
 }

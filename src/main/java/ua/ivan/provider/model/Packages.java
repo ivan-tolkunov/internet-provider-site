@@ -18,5 +18,8 @@ public class Packages {
     private String description;
     @Column(name = "price")
     private int price;
+    @ManyToOne
+    @JoinColumn(name="userId", nullable=false)
+    private User user;
 
 }

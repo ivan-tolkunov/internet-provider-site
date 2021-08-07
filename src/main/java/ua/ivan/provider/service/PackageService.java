@@ -18,8 +18,8 @@ public class PackageService {
         this.packageRepository = packageRepository;
     }
 
-    public Packages getDonateByUserId(Long id) {
-        return packageRepository.findByPackageId(id).orElseThrow(() ->
+    public Packages getPackageByUserId(Long id) {
+        return packageRepository.findByUserId(id).orElseThrow(() ->
                 new EntityNotFoundException("Donate doesn't exists"));
     }
 
