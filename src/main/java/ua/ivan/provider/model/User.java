@@ -3,7 +3,7 @@ package ua.ivan.provider.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,7 +29,7 @@ public class User {
     private Status status;
     @Column(name = "balance")
     private int balance;
-    @OneToMany(mappedBy="user")
-    private Set<Packages> packages;
+    @OneToMany(mappedBy="user",  cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Packages> packages;
 
 }

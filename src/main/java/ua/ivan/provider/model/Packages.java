@@ -18,8 +18,10 @@ public class Packages {
     private String description;
     @Column(name = "price")
     private int price;
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @Column(name = "type")
+    private String type;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 }

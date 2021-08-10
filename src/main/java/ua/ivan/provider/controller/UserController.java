@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ua.ivan.provider.model.Donate;
-import ua.ivan.provider.model.User;
+import org.springframework.web.bind.annotation.*;
+import ua.ivan.provider.model.*;
 import ua.ivan.provider.service.DonateService;
+import ua.ivan.provider.service.PackageService;
 import ua.ivan.provider.service.UserDetailsServiceImpl;
 
 @Controller
@@ -20,27 +18,63 @@ public class UserController {
 
     private UserDetailsServiceImpl userDetailsService;
     private DonateService donateService;
+    private PackageService packageService;
 
     @Autowired
-    public UserController(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService, @Qualifier("donateService")DonateService donateService) {
+    public UserController(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService,
+                          @Qualifier("donateService") DonateService donateService,
+                          @Qualifier("packageService") PackageService packageService) {
         this.userDetailsService = userDetailsService;
         this.donateService = donateService;
+        this.packageService = packageService;
+    }
+
+    @ModelAttribute
+    public void addAttributes(Model model,
+                              Authentication authentication) {
+        User user = userDetailsService.getUserByEmail(authentication.getName());
+        model.addAttribute("user", user);
     }
 
     @GetMapping
-    public String getUserPage(Model model, Authentication authentication) {
-        User user = userDetailsService.getUserByEmail(authentication.getName());
-        model.addAttribute("user", user);
+    public String getUserPage() {
         return "cabinet";
     }
 
     @PostMapping("/donate")
-    public String donate(Model model, Authentication authentication, Donate donate) {
+    public String donate(Authentication authentication, Donate donate, @RequestParam("sum") Long sum) {
+        System.out.println(sum);
         User user = userDetailsService.getUserByEmail(authentication.getName());
-        donate.setSum(200L);
+        donate.setSum(sum);
         donate.setUserId(user);
         donateService.saveDonate(donate);
-        model.addAttribute("user", user);
+        return "main";
+    }
+
+    @PostMapping("/buy")
+    public String buy(Packages userPackage) {
+        User user = userDetailsService.findById(userPackage.getUser().getId());
+        user.setBalance(user.getBalance() - userPackage.getPrice());
+        packageService.savePackage(userPackage);
+//        if (user.getBalance() < 0) {
+//            user.setStatus(Status.BANNED);
+//            return "redirect:/auth/logout";
+//        }
+        return "main";
+    }
+    @PostMapping("/unsub")
+    public String unsub(Packages myPackage) {
+        User user = new User();
+        user.setId(0L);
+        user.setFirstName("1");
+        user.setLastName("2");
+        user.setEmail("0");
+        user.setPassword("0");
+        user.setStatus(Status.ACTIVE);
+        user.setRole(Role.USER);
+        user.setBalance(0);
+        myPackage.setUser(user);
+        packageService.deletePackage(myPackage);
         return "main";
     }
 }

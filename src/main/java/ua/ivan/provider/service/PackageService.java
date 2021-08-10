@@ -20,7 +20,7 @@ public class PackageService {
 
     public Packages getPackageByUserId(Long id) {
         return packageRepository.findByUserId(id).orElseThrow(() ->
-                new EntityNotFoundException("Donate doesn't exists"));
+                new EntityNotFoundException("Package doesn't exists"));
     }
 
     public Packages findById(Long id) {
@@ -35,7 +35,11 @@ public class PackageService {
         return packageRepository.save(myPackage);
     }
 
-    public void deleteDonate(Long id) {
+    public void deletePackage(Packages myPackage) {
+        packageRepository.delete(myPackage);
+    }
+
+    public void deletePackageById(Long id) {
         packageRepository.deleteById(id);
     }
 }

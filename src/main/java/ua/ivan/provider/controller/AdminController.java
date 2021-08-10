@@ -67,16 +67,12 @@ public class AdminController {
         User user = userDetailsService.findById(userId);
         user.setBalance(user.getBalance() + sum);
         donateService.deleteDonate(donateId);
-        userDetailsService.saveUser(user);
         return "redirect:/admin";
     }
 
     @PostMapping("/unconfirm")
-    public String unconfirm(@RequestParam(value="id_donate") Long donateId,
-                            @RequestParam(value="id_user") Long userId) {
-        User user = userDetailsService.findById(userId);
+    public String unconfirm(@RequestParam(value="id_donate") Long donateId) {
         donateService.deleteDonate(donateId);
-        userDetailsService.saveUser(user);
         return "redirect:/admin";
     }
 

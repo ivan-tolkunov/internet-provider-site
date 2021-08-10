@@ -14,7 +14,7 @@ public class Donate {
     private Long id;
     @Column(name = "sum")
     private Long sum;
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User userId;
 }
