@@ -12,6 +12,10 @@
             padding-left: 20px;
             padding-right: 20px;
         }
+        .my-control-panel {
+            margin-top: 3%;
+            width: 50%;
+        }
     </style>
 </head>
 <body>
@@ -57,61 +61,73 @@
     </div>
 </nav>
 
-<div>
-    <table border="1">
-        <thead>
-        <tr>
-            <th th:text="#{label.email}"/>
-            <th th:text="#{label.balance}"/>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${listOfUsers}">
-            <td th:text="${user.email}"/>
-            <td th:text="${user.balance}"/>
-            <td th:text="${user.status}"/>
-            <td th:switch="${user.status}">
-                <form action="#" th:action="@{/admin/banUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).ACTIVE}">
-                    <button type="submit" class="btn btn-outline-danger" th:value="${user.id}" name="id">Ban</button>
-                </form>
-                <form action="#" th:action="@{/admin/unbanUser}" method="post" th:case="${T(ua.ivan.provider.model.Status).BANNED}">
-                    <button type="submit" class="btn btn-outline-success" th:value="${user.id}" name="id">Unban</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <table border="1">
-        <thead>
-        <tr>
-            <th th:text="#{label.email}"/>
-            <th th:text="#{label.balance}"/>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="donate : ${listOfDonates}">
-            <td th:text="${donate.userId.email}"/>
-            <td th:text="${donate.sum}"/>
-            <td>
-                <form action="#" th:action="@{/admin/confirm}" method="post">
-                    <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
-                    <input type="hidden" th:value="${donate.id}" name="id_donate"/>
-                    <button type="submit" class="btn btn-success" th:value="${donate.sum}" name="sum">Сonfirm</button>
-                </form>
-            </td>
-            <td>
-                <form action="#" th:action="@{/admin/unconfirm}" method="post">
-                    <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
-                    <button type="submit" class="btn btn-outline-danger" th:value="${donate.id}" name="id_donate">Unconfirm</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
+<center>
+    <div class="my-control-panel">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th th:text="#{label.email}"/>
+                <th th:text="#{label.balance}"/>
+                <th th:text="#{label.action}"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${listOfUsers}">
+                <td th:text="${user.email}"/>
+                <td th:text="${user.balance}"/>
+                <td th:text="${user.status}"/>
+                <td th:switch="${user.status}">
+                    <form action="#" th:action="@{/admin/banUser}" method="post"
+                          th:case="${T(ua.ivan.provider.model.Status).ACTIVE}">
+                        <button type="submit" class="btn btn-outline-danger" th:value="${user.id}" name="id">Ban
+                        </button>
+                    </form>
+                    <form action="#" th:action="@{/admin/unbanUser}" method="post"
+                          th:case="${T(ua.ivan.provider.model.Status).BANNED}">
+                        <button type="submit" class="btn btn-outline-success" th:value="${user.id}" name="id">Unban
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</center>
 
-</div>
+<center>
+    <div class="my-control-panel">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th th:text="#{label.email}"/>
+                <th th:text="#{label.balance}"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="donate : ${listOfDonates}">
+                <td th:text="${donate.userId.email}"/>
+                <td th:text="${donate.sum}"/>
+                <td>
+                    <div>
+                        <form action="#" th:action="@{/admin/confirm}" method="post">
+                            <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
+                            <input type="hidden" th:value="${donate.id}" name="id_donate"/>
+                            <button type="submit" class="btn btn-success" th:value="${donate.sum}" name="sum">Сonfirm</button>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <form action="#" th:action="@{/admin/unconfirm}" method="post">
+                        <input type="hidden" th:value="${donate.userId.id}" name="id_user"/>
+                        <button type="submit" class="btn btn-outline-danger" th:value="${donate.id}" name="id_donate">Unconfirm</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</center>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
