@@ -30,6 +30,24 @@
                     <a class="nav-link active" th:href="@{/admin}" sec:authorize="hasAuthority('write')"
                        th:utext="#{admin.panel}">Admin Panel</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false"
+                       th:text="#{cabinet.sort}">Sort by:</a>
+                    <div class="dropdown-menu" style="">
+                        <form action="#" th:action="@{/user/sort}" method="get">
+                            <button class="btn btn-link" type="submit" name="method" th:value="'A-Z'" th:text="#{cabinet.sort.az}">Sort by
+                                name(A-Z)
+                            </button>
+                            <button class="btn btn-link" type="submit" name="method" th:value="'Z-A'" th:text="#{cabinet.sort.za}">Sort by
+                                name(a-z)
+                            </button>
+                            <button class="btn btn-link" type="submit" name="method" th:value="'price'" th:text="#{cabinet.sort.price}">Sort by price
+                            </button>
+                        </form>
+                    </div>
+                </li>
             </ul>
         </div>
         <ul class="nav nav-pills">
@@ -47,9 +65,15 @@
                    th:text="|#{label.balance}  *{getBalance()}|">Balance:1337</a>
                 <div class="dropdown-menu" style="">
                     <form action="#" th:action="@{/user/donate}" method="post">
-                        <button class="btn btn-link" type="submit" name="sum" th:value="200">200 UAH</button>
-                        <button class="btn btn-link" type="submit" name="sum" th:value="500">500 UAH</button>
-                        <button class="btn btn-link" type="submit" name="sum" th:value="1000">1000 UAH</button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="200"
+                                th:utext="|${200} #{label.grivna}|">200 UAH
+                        </button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="500"
+                                th:utext="|${500} #{label.grivna}|">500 UAH
+                        </button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="1000"
+                                th:utext="|${1000} #{label.grivna}|">1000 UAH
+                        </button>
                     </form>
                 </div>
             </li>
@@ -65,7 +89,7 @@
     <center><h1 th:utext="#{cabinet.site.title}">Yours packets</h1></center>
     <br>
     <div th:object="${user}" class="d-flex justify-content-around">
-        <div th:each="package : *{getPackages()}">
+        <div th:each="package : ${listOfUserPackages}">
             <div class="card border-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header" th:utext="${package.getType()}">Internet</div>
                 <div class="card-body text-dark">
@@ -79,7 +103,8 @@
                         <input type="hidden" name="price" th:value="${package.getPrice()}"/>
                         <input type="hidden" name="type" th:value="${package.getType()}"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
-                        <button type="submit" class="btn btn-danger" th:utext="#{cabinet.btn.unsub}">Unsubscribe</button>
+                        <button type="submit" class="btn btn-danger" th:utext="#{cabinet.btn.unsub}">Unsubscribe
+                        </button>
                     </form>
                 </div>
             </div>

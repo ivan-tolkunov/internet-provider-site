@@ -20,7 +20,7 @@ public class Packages {
     private int price;
     @Column(name = "type")
     private String type;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

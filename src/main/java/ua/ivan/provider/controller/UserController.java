@@ -1,6 +1,5 @@
 package ua.ivan.provider.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -34,6 +33,14 @@ public class UserController {
                               Authentication authentication) {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
+        model.addAttribute("listOfUserPackages", user.getPackages());
+
+        model.addAttribute("isSubscriberInternet",
+                packageService.alreadySubscribe(user.getPackages(), "Internet"));
+        model.addAttribute("isSubscriberIPTV",
+                packageService.alreadySubscribe(user.getPackages(), "IP-TV"));
+        model.addAttribute("isSubscriberTelephone",
+                packageService.alreadySubscribe(user.getPackages(), "Cellular communication"));
     }
 
     @GetMapping
@@ -43,37 +50,26 @@ public class UserController {
 
     @PostMapping("/donate")
     public String donate(Authentication authentication, Donate donate, @RequestParam("sum") Long sum) {
-        System.out.println(sum);
-        User user = userDetailsService.getUserByEmail(authentication.getName());
-        donate.setSum(sum);
-        donate.setUserId(user);
-        donateService.saveDonate(donate);
+        donateService.requestDonate(donate, sum, userDetailsService.getUserByEmail(authentication.getName()));
         return "main";
+    }
+
+    @GetMapping("/sort")
+    public String sort(Model model, Authentication authentication, @RequestParam("method") String method) {
+        model.addAttribute("listOfUserPackages", packageService.sortPackages(method, userDetailsService.getUserByEmail(authentication.getName())));
+        return "cabinet";
     }
 
     @PostMapping("/buy")
     public String buy(Packages userPackage) {
-        User user = userDetailsService.findById(userPackage.getUser().getId());
-        user.setBalance(user.getBalance() - userPackage.getPrice());
-        packageService.savePackage(userPackage);
-//        if (user.getBalance() < 0) {
-//            user.setStatus(Status.BANNED);
-//            return "redirect:/auth/logout";
-//        }
-        return "main";
+        return packageService.buySubscribe(
+                userDetailsService.findById(userPackage.getUser().getId()),
+                userPackage,
+                userDetailsService);
     }
+
     @PostMapping("/unsub")
     public String unsub(Packages myPackage) {
-        User user = new User();
-        user.setId(0L);
-        user.setFirstName("1");
-        user.setLastName("2");
-        user.setEmail("0");
-        user.setPassword("0");
-        user.setStatus(Status.ACTIVE);
-        user.setRole(Role.USER);
-        user.setBalance(0);
-        myPackage.setUser(user);
         packageService.deletePackage(myPackage);
         return "main";
     }

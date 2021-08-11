@@ -1,5 +1,8 @@
 package ua.ivan.provider.service;
 
+import ua.ivan.provider.model.Donate;
+import ua.ivan.provider.model.Packages;
+import ua.ivan.provider.model.Status;
 import ua.ivan.provider.model.User;
 import ua.ivan.provider.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +50,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    public User banUser(Long id) {
+        findById(id).setStatus(Status.BANNED);
+        return saveUser(findById(id));
+    }
+
+    public User unbanUser(Long id) {
+        findById(id).setStatus(Status.ACTIVE);
+        return saveUser(findById(id));
+    }
+
+    public User confirmDonate(int sum, Long userId, Donate donate) {
+        User user = findById(userId);
+        user.setBalance(user.getBalance() + sum);
+        return saveUser(user);
+    }
+
 }

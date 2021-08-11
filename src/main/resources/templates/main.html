@@ -50,9 +50,15 @@
                    th:text="|#{label.balance}  *{getBalance()}|">Balance:1337</a>
                 <div class="dropdown-menu" style="">
                     <form action="#" th:action="@{/user/donate}" method="post">
-                        <button class="btn btn-link" type="submit" name="sum" th:value="200">200 UAH</button>
-                        <button class="btn btn-link" type="submit" name="sum" th:value="500">500 UAH</button>
-                        <button class="btn btn-link" type="submit" name="sum" th:value="1000">1000 UAH</button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="200"
+                                th:utext="|${200} #{label.grivna}|">200 UAH
+                        </button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="500"
+                                th:utext="|${500} #{label.grivna}|">500 UAH
+                        </button>
+                        <button class="btn btn-link" type="submit" name="sum" th:value="1000"
+                                th:utext="|${1000} #{label.grivna}|">1000 UAH
+                        </button>
                     </form>
                 </div>
             </li>
@@ -143,7 +149,8 @@
                         <input type="hidden" name="price" th:value="300"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'Internet'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add
+                        </button>
                     </form>
                 </div>
             </div>

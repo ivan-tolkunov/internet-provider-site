@@ -29,7 +29,7 @@ public class User {
     private Status status;
     @Column(name = "balance")
     private int balance;
-    @OneToMany(mappedBy="user",  cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy="user")
     private List<Packages> packages;
 
 }
