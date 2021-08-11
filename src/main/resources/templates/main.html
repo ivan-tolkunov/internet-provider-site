@@ -33,6 +33,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#" th:utext="*{getEmail()}" th:href="@{/user}">Email</a>
                 </li>
+                <li class="nav-item">
+                    <form action="#" th:action="@{/download}" method="post">
+                        <button class="btn btn-light" type="submit" th:utext="#{label.download}">Download</button>
+                    </form>
+                </li>
             </ul>
         </div>
         <ul class="nav nav-pills">

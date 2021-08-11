@@ -35,12 +35,12 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("listOfUserPackages", user.getPackages());
 
-        model.addAttribute("isSubscriberInternet",
-                packageService.alreadySubscribe(user.getPackages(), "Internet"));
-        model.addAttribute("isSubscriberIPTV",
-                packageService.alreadySubscribe(user.getPackages(), "IP-TV"));
-        model.addAttribute("isSubscriberTelephone",
-                packageService.alreadySubscribe(user.getPackages(), "Cellular communication"));
+//        model.addAttribute("isSubscriberInternet",
+//                packageService.alreadySubscribe(user.getPackages(), "Internet"));
+//        model.addAttribute("isSubscriberIPTV",
+//                packageService.alreadySubscribe(user.getPackages(), "IP-TV"));
+//        model.addAttribute("isSubscriberTelephone",
+//                packageService.alreadySubscribe(user.getPackages(), "Cellular communication"));
     }
 
     @GetMapping
