@@ -48,15 +48,21 @@ public class UserController {
         return "cabinet";
     }
 
+    @PostMapping
+    public String getUserPageGet() {
+        return "cabinet";
+    }
+
     @PostMapping("/donate")
     public String donate(Authentication authentication, Donate donate, @RequestParam("sum") Long sum) {
         donateService.requestDonate(donate, sum, userDetailsService.getUserByEmail(authentication.getName()));
-        return "main";
+        return "redirect:/cabinet";
     }
 
     @GetMapping("/sort")
     public String sort(Model model, Authentication authentication, @RequestParam("method") String method) {
-        model.addAttribute("listOfUserPackages", packageService.sortPackages(method, userDetailsService.getUserByEmail(authentication.getName())));
+        model.addAttribute("listOfUserPackages",
+                packageService.sortPackages(method, userDetailsService.getUserByEmail(authentication.getName())));
         return "cabinet";
     }
 
@@ -71,6 +77,6 @@ public class UserController {
     @PostMapping("/unsub")
     public String unsub(Packages myPackage) {
         packageService.deletePackage(myPackage);
-        return "main";
+        return "redirect:/cabinet";
     }
 }

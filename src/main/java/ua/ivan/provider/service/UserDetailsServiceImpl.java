@@ -1,9 +1,6 @@
 package ua.ivan.provider.service;
 
-import ua.ivan.provider.model.Donate;
-import ua.ivan.provider.model.Packages;
-import ua.ivan.provider.model.Status;
-import ua.ivan.provider.model.User;
+import ua.ivan.provider.model.*;
 import ua.ivan.provider.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,6 +61,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public User confirmDonate(int sum, Long userId, Donate donate) {
         User user = findById(userId);
         user.setBalance(user.getBalance() + sum);
+        return saveUser(user);
+    }
+
+    public User addNewUser(User user, String password) {
+        user.setRole(Role.USER);
+        user.setStatus(Status.ACTIVE);
+        user.setPassword(password);
+        user.setBalance(0);
         return saveUser(user);
     }
 

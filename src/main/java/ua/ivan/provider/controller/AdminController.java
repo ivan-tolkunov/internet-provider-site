@@ -43,16 +43,21 @@ public class AdminController {
         return "admin";
     }
 
+    @PostMapping
+    public String getAdminPage() {
+        return "admin";
+    }
+
     @PostMapping("/banUser")
     public String banUser(@RequestParam(value="id") long id) {
         userDetailsService.banUser(id);
-        return "admin";
+        return "redirect:/admin";
     }
 
     @PostMapping("/unbanUser")
     public String unbanUser(@RequestParam(value="id") long id) {
         userDetailsService.unbanUser(id);
-        return "admin";
+        return "redirect:/admin";
     }
 
     @PostMapping("/confirm")

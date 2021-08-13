@@ -33,11 +33,7 @@ public class RegistrationController {
 
     @PostMapping("/addNewUser")
     public String addNewUser(User user) {
-        user.setRole(Role.USER);
-        user.setStatus(Status.ACTIVE);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setBalance(0);
-        userDetailsService.saveUser(user);
+        userDetailsService.addNewUser(user, passwordEncoder.encode(user.getPassword()));
         return "redirect:/auth/login";
     }
 }
