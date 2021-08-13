@@ -4,5 +4,10 @@
       "name": "spring.jpa.hibernate.naming_strategy",
       "type": "java.lang.String",
       "description": "Description for spring.jpa.hibernate.naming_strategy."
-  }
-] }
+    },
+    {
+      "name": "java.runtime.version",
+      "type": "java.lang.String",
+      "description": "Description for java.runtime.version."
+    }
+  ] }
