@@ -34,13 +34,6 @@ public class UserController {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
         model.addAttribute("listOfUserPackages", user.getPackages());
-
-//        model.addAttribute("isSubscriberInternet",
-//                packageService.alreadySubscribe(user.getPackages(), "Internet"));
-//        model.addAttribute("isSubscriberIPTV",
-//                packageService.alreadySubscribe(user.getPackages(), "IP-TV"));
-//        model.addAttribute("isSubscriberTelephone",
-//                packageService.alreadySubscribe(user.getPackages(), "Cellular communication"));
     }
 
     @GetMapping
@@ -56,7 +49,7 @@ public class UserController {
     @PostMapping("/donate")
     public String donate(Authentication authentication, Donate donate, @RequestParam("sum") Long sum) {
         donateService.requestDonate(donate, sum, userDetailsService.getUserByEmail(authentication.getName()));
-        return "redirect:/cabinet";
+        return "redirect:/user";
     }
 
     @GetMapping("/sort")
@@ -77,6 +70,6 @@ public class UserController {
     @PostMapping("/unsub")
     public String unsub(Packages myPackage) {
         packageService.deletePackage(myPackage);
-        return "redirect:/cabinet";
+        return "redirect:/user";
     }
 }

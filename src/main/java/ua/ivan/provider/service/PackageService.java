@@ -77,7 +77,7 @@ public class PackageService {
             user.setStatus(Status.BANNED);
             return "redirect:/auth/logout";
         }
-        return "main";
+        return "redirect:/auth/main";
     }
 
     public boolean alreadySubscribe(List<Packages> packages, String packageName) {

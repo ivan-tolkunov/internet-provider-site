@@ -93,7 +93,8 @@
                         <input type="hidden" name="price" th:value="250"/>
                         <input type="hidden" name="type" th:value="'Internet'"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberInternet}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberInternet}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -113,7 +114,8 @@
                         <input type="hidden" name="price" th:value="100"/>
                         <input type="hidden" name="type" th:value="'Cellular communication'"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberTelephone}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberTelephone}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -132,7 +134,8 @@
                         <input type="hidden" name="price" th:value="100"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'IP-TV'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberIPTV}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberIPTV}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -154,8 +157,8 @@
                         <input type="hidden" name="price" th:value="300"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'Internet'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add
-                        </button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberInternet}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberInternet}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -174,7 +177,8 @@
                         <input type="hidden" name="price" th:value="140"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'Cellular communication'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberTelephone}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberTelephone}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -192,7 +196,8 @@
                         <input type="hidden" name="price" th:value="160"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'IP-TV'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberIPTV}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberIPTV}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -213,7 +218,8 @@
                         <input type="hidden" name="price" th:value="320"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'Internet'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberInternet}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberInternet}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -232,7 +238,8 @@
                         <input type="hidden" name="price" th:value="160"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'Cellular communication'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberTelephone}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberTelephone}" disabled>Add</button>
                     </form>
                 </div>
             </div>
@@ -250,7 +257,8 @@
                         <input type="hidden" name="price" th:value="200"/>
                         <input type="hidden" name="user" th:value="*{getId()}"/>
                         <input type="hidden" name="type" th:value="'IP-TV'"/>
-                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:if="${isSubscriberIPTV}">Add</button>
+                        <button type="submit" class="btn btn-primary" th:utext="#{main.packet.btn}" th:unless="${isSubscriberIPTV}" disabled>Add</button>
                     </form>
                 </div>
             </div>
