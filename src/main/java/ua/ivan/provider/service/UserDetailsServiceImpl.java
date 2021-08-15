@@ -58,7 +58,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return saveUser(findById(id));
     }
 
-    public User confirmDonate(int sum, Long userId, Donate donate) {
+    public User confirmDonate(int sum, Long userId) {
         User user = findById(userId);
         user.setBalance(user.getBalance() + sum);
         return saveUser(user);

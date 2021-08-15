@@ -3,6 +3,7 @@ package ua.ivan.provider.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,8 +21,9 @@ public class Packages {
     private int price;
     @Column(name = "type")
     private String type;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+
+    @ManyToMany(mappedBy = "packages")
+    private List<User> users;
+
 
 }

@@ -97,12 +97,8 @@
                     <p class="card-text" th:utext="${package.getDescription()}">Get 20 GB of Internet for 4 weeks 250
                         UAH!</p>
                     <form action="#" th:action="@{/user/unsub}" method="post">
-                        <input type="hidden" name="id" th:value="${package.getId()}"/>
-                        <input type="hidden" name="name" th:value="${package.getName()}"/>
-                        <input type="hidden" name="description" th:value="${package.getDescription()}"/>
-                        <input type="hidden" name="price" th:value="${package.getPrice()}"/>
-                        <input type="hidden" name="type" th:value="${package.getType()}"/>
-                        <input type="hidden" name="user" th:value="*{getId()}"/>
+                        <input type="hidden" name="userId" th:value="*{getId()}"/>
+                        <input type="hidden" name="packageId" th:value="${package.getId()}"/>
                         <button type="submit" class="btn btn-danger" th:utext="#{cabinet.btn.unsub}">Unsubscribe
                         </button>
                     </form>

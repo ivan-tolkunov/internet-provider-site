@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -29,7 +30,22 @@ public class User {
     private Status status;
     @Column(name = "balance")
     private int balance;
-    @OneToMany(mappedBy="user")
+
+    @ManyToMany
+    @JoinTable(
+            name = "subscribe",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_package"))
     private List<Packages> packages;
 
+    public void addUserPackage(Packages userPackage) {
+        this.packages.add(userPackage);
+        userPackage.getUsers().add(this);
+    }
+
+    public void removeUserPackage(Packages userPackage) {
+        this.packages.remove(userPackage);
+        userPackage.getUsers().remove(this);
+
+    }
 }

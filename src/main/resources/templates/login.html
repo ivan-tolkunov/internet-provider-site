@@ -34,8 +34,23 @@
                 <a class="dropdown-item" href="/changeLanguage?language=en" th:utext="#{language.en}">English</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/registration" th:utext="#{registration}">Registration</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-haspopup="true" aria-expanded="false"
+               th:text="#{label.balance}">Balance:1337</a>
+            <div class="dropdown-menu" style="">
+                <form action="#" th:action="@{/user/donate}" method="post">
+                    <button class="btn btn-link" type="submit" name="sum" th:value="200"
+                            th:utext="|${200} #{label.grivna}|">200 UAH
+                    </button>
+                    <button class="btn btn-link" type="submit" name="sum" th:value="500"
+                            th:utext="|${500} #{label.grivna}|">500 UAH
+                    </button>
+                    <button class="btn btn-link" type="submit" name="sum" th:value="1000"
+                            th:utext="|${1000} #{label.grivna}|">1000 UAH
+                    </button>
+                </form>
+            </div>
         </li>
     </ul>
 </nav>

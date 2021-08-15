@@ -7,5 +7,5 @@ import ua.ivan.provider.model.Packages;
 import java.util.Optional;
 
 public interface PackageRepository extends JpaRepository<Packages, Long> {
-        Optional<Packages> findByUserId(Long id);
+        Optional<Packages> findById(Long id);
 }

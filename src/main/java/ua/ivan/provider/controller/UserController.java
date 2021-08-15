@@ -11,6 +11,7 @@ import ua.ivan.provider.service.DonateService;
 import ua.ivan.provider.service.PackageService;
 import ua.ivan.provider.service.UserDetailsServiceImpl;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -33,7 +34,7 @@ public class UserController {
                               Authentication authentication) {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
-        model.addAttribute("listOfUserPackages", user.getPackages());
+        model.addAttribute("listOfSortedPackages", user.getPackages());
     }
 
     @GetMapping
@@ -49,27 +50,37 @@ public class UserController {
     @PostMapping("/donate")
     public String donate(Authentication authentication, Donate donate, @RequestParam("sum") Long sum) {
         donateService.requestDonate(donate, sum, userDetailsService.getUserByEmail(authentication.getName()));
-        return "redirect:/user";
+        return "redirect:/auth/main";
     }
 
     @GetMapping("/sort")
     public String sort(Model model, Authentication authentication, @RequestParam("method") String method) {
         model.addAttribute("listOfUserPackages",
-                packageService.sortPackages(method, userDetailsService.getUserByEmail(authentication.getName())));
+                packageService.sortPackages(method, userDetailsService.getUserByEmail(authentication.getName()).getPackages()));
         return "cabinet";
     }
 
+    @GetMapping("/sortMain")
+    public String sortMain(Model model, @RequestParam("method") String method) {
+        model.addAttribute("listOfSortedPackages",
+                packageService.sortPackages(method, packageService.findAll()));
+        return "main";
+    }
+
     @PostMapping("/buy")
-    public String buy(Packages userPackage) {
+    public String buy(Long packageId, Long userId) {
         return packageService.buySubscribe(
-                userDetailsService.findById(userPackage.getUser().getId()),
-                userPackage,
+                userDetailsService.findById(userId),
+                packageService.getPackageById(packageId),
                 userDetailsService);
     }
 
     @PostMapping("/unsub")
-    public String unsub(Packages myPackage) {
-        packageService.deletePackage(myPackage);
-        return "redirect:/user";
+    public String unsub(Long userId, Long packageId) {
+        return packageService.unsubscribe(
+                userDetailsService.findById(userId),
+                packageService.getPackageById(packageId),
+                userDetailsService
+        );
     }
 }

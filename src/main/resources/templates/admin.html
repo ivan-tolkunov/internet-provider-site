@@ -29,6 +29,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#" th:utext="*{getEmail()}" th:href="@{/user}">Email</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false"
+                       th:text="#{admin.action}">Admin action</a>
+                    <div class="dropdown-menu" style="">
+                        <form action="#" th:action="@{/registration}" method="get">
+                            <button class="btn btn-link" type="submit" th:utext="#{registration}">Register new user</button>
+                        </form>
+                        <form action="#" th:action="@{/admin/addPackage}" method="get">
+                            <button class="btn btn-link" type="submit" th:utext="#{admin.add.new.package}">Add new package</button>
+                        </form>
+                    </div>
+                </li>
             </ul>
         </div>
         <ul class="nav nav-pills">

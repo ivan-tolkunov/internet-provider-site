@@ -33,8 +33,8 @@ public class AdminController {
                               Authentication authentication) {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
-        model.addAttribute("listOfUsers", userDetailsService.findAll());
         model.addAttribute("listOfDonates", donateService.findAll());
+        model.addAttribute("listOfUsers", userDetailsService.findAll());
         model.addAttribute("listOfPackages", packageService.findAll());
     }
 
@@ -64,7 +64,7 @@ public class AdminController {
     public String confirm(@RequestParam(value="id_donate") Long donateId,
                           @RequestParam(value="id_user") Long userId,
                           @RequestParam(value="sum") int sum) {
-        userDetailsService.confirmDonate(sum, userId, donateService.findById(donateId));
+        userDetailsService.confirmDonate(sum, userId);
         donateService.deleteDonate(donateId);
         return "redirect:/admin";
     }
@@ -74,5 +74,11 @@ public class AdminController {
         donateService.deleteDonate(donateId);
         return "redirect:/admin";
     }
+
+    @GetMapping("/addPackage")
+    public String getPackageForm() {
+        return null;
+    }
+
 
 }
