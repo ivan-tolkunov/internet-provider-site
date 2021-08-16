@@ -37,7 +37,10 @@
                         <form action="#" th:action="@{/registration}" method="get">
                             <button class="btn btn-link" type="submit" th:utext="#{registration}">Register new user</button>
                         </form>
-                        <form action="#" th:action="@{/admin/addPackage}" method="get">
+                        <form action="#" th:action="@{/admin/editPackagePage}" method="get">
+                            <button class="btn btn-link" type="submit" th:utext="#{admin.edit.new.package}">Edit package</button>
+                        </form>
+                        <form action="#" th:action="@{/admin/addPackageQuery}" method="get">
                             <button class="btn btn-link" type="submit" th:utext="#{admin.add.new.package}">Add new package</button>
                         </form>
                     </div>

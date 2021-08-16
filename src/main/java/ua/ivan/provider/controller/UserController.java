@@ -34,7 +34,7 @@ public class UserController {
                               Authentication authentication) {
         User user = userDetailsService.getUserByEmail(authentication.getName());
         model.addAttribute("user", user);
-        model.addAttribute("listOfSortedPackages", user.getPackages());
+        model.addAttribute("listOfUserPackages", user.getPackages());
     }
 
     @GetMapping

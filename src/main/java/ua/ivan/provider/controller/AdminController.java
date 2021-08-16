@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ua.ivan.provider.model.Packages;
 import ua.ivan.provider.model.User;
 import ua.ivan.provider.service.DonateService;
 import ua.ivan.provider.service.PackageService;
@@ -75,9 +76,38 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/addPackage")
-    public String getPackageForm() {
-        return null;
+    @GetMapping("/editPackagePage")
+    public String getPackage() {
+        return "edit";
+    }
+
+    @PostMapping("/editPackageQuery")
+    public String getPackageForm(Model model, Long packageId) {
+        model.addAttribute("package", packageService.getPackageById(packageId));
+        return "editForm";
+    }
+
+    @GetMapping("/addPackageQuery")
+    public String getAddPackageForm() {
+        return "addForm";
+    }
+
+    @PostMapping("/editPackage")
+    public String editPackage(Packages packages) {
+        packageService.savePackage(packages);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/addPackage")
+    public String addPackage(Packages packages) {
+        packageService.savePackage(packages);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/deletePackage")
+    public String deletePackage(Long packageId) {
+        packageService.deletePackage(packageService.getPackageById(packageId));
+        return "redirect:/admin";
     }
 
 

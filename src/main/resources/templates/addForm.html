@@ -38,23 +38,23 @@
         </li>
     </ul>
 </nav>
-    <form class="form-signin" method="post" action="/registration/addNewUser" >
-        <h1 class="h3 mb-3 font-weight-normal"  th:utext="#{registration.info}">Please fill all information</h1>
+<form class="form-signin" method="post" th:action="@{/admin/editPackage}" >
+    <h1 class="h3 mb-3 font-weight-normal"  th:utext="#{registration.info}">Please fill all information</h1>
 
-        <label for="inputPassword" class="sr-only" th:utext="#{first.name}">First name</label>
-        <input type="text" id="inputName" class="form-control" th:placeholder="#{first.name}" name="firstName" required>
+    <label for="inputPassword" class="sr-only" th:utext="#{edit.name}">Name</label>
+    <input type="text" id="inputName" class="form-control" th:placeholder="#{edit.name}" name="name" required>
 
-        <label for="inputPassword" class="sr-only" th:utext="#{last.name}">Last name</label>
-        <input type="text" id="inputLastName" class="form-control" th:placeholder="#{last.name}" name="lastName" required>
+    <label for="inputPassword" class="sr-only" th:utext="#{edit.description}">Description</label>
+    <input type="text" id="inputLastName" class="form-control" th:placeholder="#{edit.description}" name="description" required>
 
-        <label for="inputEmail" class="sr-only" th:utext="#{label.email}" >Email</label>
-        <input type="email" id="inputEmail" class="form-control" th:placeholder="#{label.email}" autofocus="" name="email" required>
+    <label for="inputEmail" class="sr-only" th:utext="#{edit.price}" >Price</label>
+    <input type="text" id="inputEmail" class="form-control" th:placeholder="#{edit.price}" autofocus="" name="price" required>
 
-        <label for="inputPassword" class="sr-only" th:utext="#{label.password}">Password</label>
-        <input type="password" id="inputPassword" class="form-control" th:placeholder="#{label.password}" name="password" required>
+    <label for="inputPassword" class="sr-only" th:utext="#{edit.type}">Type</label>
+    <input type="text" id="inputPassword" class="form-control" th:placeholder="#{edit.type}" name="type" required>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{registration.btn}">Sign in</button>
-    </form>
+    <button class="btn btn-lg btn-success btn-block" type="submit" th:utext="#{label.add}">Add</button>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
