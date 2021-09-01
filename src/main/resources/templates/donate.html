@@ -34,26 +34,17 @@
                 <a class="dropdown-item" href="/changeLanguage?language=en" th:utext="#{language.en}">English</a>
             </div>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link active" href="/donatePage" th:utext="#{label.balance}">Donate</a>
-        </li>
     </ul>
 </nav>
-<div class="alert alert-danger" role="alert" th:if="${param.error != null}">
-    <p th:utext="#{label.error.login}">Error</p>
-</div>
-<form class="form-signin" method="post" action="/auth/login">
-    <h1 class="h3 mb-3 font-weight-normal" th:utext="#{login.sign}">Please sign in</h1>
+<form class="form-signin" method="post" action="/donatePage/unbanDonate">
+    <h1 class="h3 mb-3 font-weight-normal" th:utext="#{registration.info}">Please sign in</h1>
 
     <label for="inputEmail" class="sr-only" th:utext="#{label.email}">Email</label>
-    <input type="email" id="inputEmail" class="form-control" th:placeholder="#{label.email}" autofocus=""
-           name="username" required>
+    <input type="email" id="inputEmail" class="form-control" autofocus="" name="email" required>
+    <label for="inputPassword" class="sr-only" th:utext="#{label.balance}">Sum</label>
+    <input type="number" id="inputPassword" class="form-control" name="sum" required>
 
-    <label for="inputPassword" class="sr-only" th:utext="#{label.password}">Password</label>
-    <input type="password" id="inputPassword" class="form-control" th:placeholder="#{label.password}" name="password"
-           required>
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{login}">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{label.add}">Sign in</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"

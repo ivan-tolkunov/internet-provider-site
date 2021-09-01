@@ -1,5 +1,6 @@
 package ua.ivan.provider.service;
 
+import org.springframework.web.servlet.ModelAndView;
 import ua.ivan.provider.model.Packages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,9 @@ public class PackageService {
         return packageRepository.save(myPackage);
     }
 
-    public void deletePackage(Packages myPackage) {
+    public boolean deletePackage(Packages myPackage) {
         packageRepository.delete(myPackage);
+        return true;
     }
 
     public void deletePackageById(Long id) {
@@ -69,11 +71,12 @@ public class PackageService {
     public String buySubscribe(User user, Packages packages, UserDetailsServiceImpl userDetailsService) {
         user.setBalance(user.getBalance() - packages.getPrice());
         user.addUserPackage(packages);
-        userDetailsService.saveUser(user);
         if (user.getBalance() < 0) {
             user.setStatus(Status.BANNED);
+            userDetailsService.saveUser(user);
             return "redirect:/auth/logout";
         }
+        userDetailsService.saveUser(user);
         return "redirect:/auth/main";
     }
 

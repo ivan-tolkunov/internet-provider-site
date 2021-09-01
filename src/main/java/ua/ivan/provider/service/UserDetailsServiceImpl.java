@@ -44,8 +44,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
+    public boolean deleteUser(Long id) {
         userRepository.deleteById(id);
+        return true;
     }
 
     public User banUser(Long id) {
@@ -61,6 +62,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public User confirmDonate(int sum, Long userId) {
         User user = findById(userId);
         user.setBalance(user.getBalance() + sum);
+        if (user.getBalance() >= 0) {
+            user.setStatus(Status.ACTIVE);
+        }
         return saveUser(user);
     }
 

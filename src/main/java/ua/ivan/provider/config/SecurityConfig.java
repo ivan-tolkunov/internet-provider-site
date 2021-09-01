@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/changeLanguage", "/download").permitAll()
+                .antMatchers("/", "/changeLanguage", "/download", "/donatePage/**").permitAll()
                 .antMatchers("/admin/**", "/registration/**").hasAnyAuthority(Permission.WRITE.getPermission())
                 .anyRequest()
                 .authenticated()
@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/auth/main")
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "POST"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "GET"))
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")

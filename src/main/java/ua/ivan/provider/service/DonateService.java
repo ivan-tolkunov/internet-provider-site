@@ -36,8 +36,9 @@ public class DonateService {
         return donateRepository.save(donate);
     }
 
-    public void deleteDonate(Long id) {
+    public boolean deleteDonate(Long id) {
         donateRepository.deleteById(id);
+        return true;
     }
 
     public Donate requestDonate(Donate donate, Long sum, User user) {

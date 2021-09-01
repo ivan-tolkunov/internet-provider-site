@@ -32,6 +32,6 @@ public class RegistrationController {
     @PostMapping("/addNewUser")
     public String addNewUser(User user) {
         userDetailsService.addNewUser(user, passwordEncoder.encode(user.getPassword()));
-        return "redirect:/auth/login";
+        return "redirect:/admin";
     }
 }
